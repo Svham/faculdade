@@ -1,13 +1,20 @@
-document.getElementById('formulario').addEventListener('submit', function (event){
-    const nomeInput = document.getElementById('campoNome');
-    const emailInput = document.getElementById('campoEmail');
-    const menssagem = document.getElementById('menssagem');
+const formulario = document.getElementById('formulario');
+const mensagem = document.getElementById('mensagem');
 
-    if (nomeInput.value.trim() === '' || emailInput.value.trim() ==='') {
-        event.preventDefault();//inpede o envio do formulário
+formulario.addEventListener('submit', function (event) {
+    event.preventDefault(); // Impede envio automático
 
-        menssagem.textContent = 'Algum campo obrigatório não está preenchido'
+    const nome = document.getElementById('campoNome').value.trim();
+    const email = document.getElementById('campoEmail').value.trim();
+
+    if (nome === "" || email === "") {
+        mensagem.style.color = "red";
+        mensagem.textContent = "⚠️ Preencha todos os campos obrigatórios (Nome e E-mail).";
     } else {
-        menssagem.textContent = "Formulário enviado com sucesso!"
+        mensagem.style.color = "green";
+        mensagem.textContent = "✅ Formulário enviado com sucesso!";
+
+        // Limpa os campos
+        formulario.reset();
     }
 });
